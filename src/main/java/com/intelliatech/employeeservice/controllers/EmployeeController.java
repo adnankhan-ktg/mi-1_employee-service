@@ -40,6 +40,19 @@ public class EmployeeController {
 
     }
 
+
+    @DeleteMapping("/delete/{employeeId}")
+    public ResponseEntity<?> deleteEmployeeById(@PathVariable("employeeId") int employeeId)
+    {
+        log.info("inside the EmployeeController->deleteEmployeeById method..");
+          log.info("EmployeeId sent to the service layer for delete the employee");
+          this.employeeService.deleteEmployeeByEmployeeId(employeeId);
+          log.info("return from the method..");
+          log.info("employee successfully delete");
+          return ResponseEntity.status(HttpStatus.OK).build();
+
+    }
+
     @GetMapping("/{departmentId}")
     public ResponseEntity<?> getEmployeeByDepartmentId(@PathVariable("departmentId") int departentId)
     {

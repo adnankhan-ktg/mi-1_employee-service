@@ -72,4 +72,32 @@ public class EmployeeServiceImpl implements EmployeeService {
         
         
     }
+
+    @Override
+    public void deleteEmployeeByEmployeeId(int id) {
+
+        log.info("inside in the EmployeeServiceImpl --> deleteEmployeeByEmployeeId method");
+        log.info("Employee hand over the dao layer of delete the employee...");
+        this.employeeDao.deleteById(id);
+        log.info("employee successfully deleted");
+
+    }
+
+    @Override
+    public EmployeeDto getEmployeeByEmployeeId(int id) {
+        log.info("inside EmployeeService-->getEmployeeByEmployeeId method");
+        log.info("Employee Id sent to the Employee Dao for get the employee");
+        Employee employee = this.employeeDao.findByEmployeeId(id);
+        //Create EmployeeDto type of object..
+        EmployeeDto employeeDto = new EmployeeDto();
+        //Change Employee entity value into the EmployeeDto..
+        BeanUtils.copyProperties(employee,employeeDto);
+        log.info("return from the EmployeeService-->getEmployeeByEmployeeId method.");
+        return employeeDto;
+    }
+
+    @Override
+    public EmployeeDto updateEmployee(EmployeeDto employeeDto) {
+        return null;
+    }
 }
